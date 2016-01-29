@@ -11,7 +11,12 @@ mainMenu.Drawings:Boolean("Q","Draw Q", true)
 mainMenu.Drawings:Boolean("E","Draw E", true)
 mainMenu.Drawings:Boolean("R","Draw R", true)
  
-
+OnDraw(function(myHero)
+		local pos = GetOrigin(myHero)
+		if mainMenu.Drawings.Q:Value() then DrawCircle(myHeroPos().x, myHeroPos().y, myHeroPos().z,400,3,100,0xff00ff00) end
+		if mainMenu.Drawings.E:Value() then DrawCircle(myHeroPos().x, myHeroPos().y, myHeroPos().z,0,3,100,0xff00ff00) end
+		if mainMenu.Drawings.R:Value() then DrawCircle(myHeroPos().x, myHeroPos().y, myHeroPos().z,GetCastRange(myHero,_R),3,100,0xff00ff000) end
+	end)
 
 
 
