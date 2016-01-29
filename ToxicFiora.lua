@@ -36,3 +36,5 @@ OnTick(function(myHero)
 			end
 	end
 end)
+
+PrintChat("Toxic Fiora by: POPTART Loaded, Have Fun)
