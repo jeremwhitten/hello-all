@@ -14,11 +14,10 @@ mainMenu.Drawings:Boolean("R","Draw R", true)
 
 
 
-local target = GetCurrentTarget()
+
 
 
 OnTick(function(myHero)
-	local target = GetCurrentTarget()
 	if IOW:Mode() == "Combo" then
 	local target = GetCurrentTarget()
                        
