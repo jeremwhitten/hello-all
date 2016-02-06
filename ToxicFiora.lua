@@ -5,12 +5,26 @@ mainMenu:SubMenu("Combo", "Combo")
 mainMenu.Combo:Boolean("Q", "Use Q", true)
 mainMenu.Combo:Boolean("E", "Use E", true)
 mainMenu.Combo:Boolean("R", "Use R", true)
+mainMenu.Combo:Boolean("Parry", "Use W", true)
 mainMenu.Combo:Slider("RP","Use R at x % HP", 35, 0, 100, 1)
 
 mainMenu:SubMenu("Drawings", "Drawings:")
 mainMenu.Drawings:Boolean("Q","Draw Q", true)
 mainMenu.Drawings:Boolean("E","Draw E", true)
 mainMenu.Drawings:Boolean("R","Draw R", true)
+
+mainMenu:SubMenu("Misc", "Misc")
+mainMenu.Misc:Boolean("AutoW", "use W", true)
+
+
+require 'antiCC'
+addAntiCCCallback(function(unit, spellProc)
+	if CanUseSpell(myHero,_W) == READY then
+		CastSkillShot(_W,GetOrigin(unit))
+	end
+end)
+
+
  
 OnDraw(function(myHero)
 		local pos = GetOrigin(myHero)
@@ -18,7 +32,6 @@ OnDraw(function(myHero)
 		if mainMenu.Drawings.E:Value() then DrawCircle(myHeroPos().x, myHeroPos().y, myHeroPos().z,0,3,100,0xff00ff00) end
 		if mainMenu.Drawings.R:Value() then DrawCircle(myHeroPos().x, myHeroPos().y, myHeroPos().z,GetCastRange(myHero,_R),3,100,0xff00ff000) end
 	end)
-
 
 
 
@@ -43,5 +56,12 @@ OnTick(function(myHero)
 			end
 	end
 end)
+
+
+
+ 
+
+
+
 
 PrintChat("Toxic Fiora by: POPTART Loaded, Have Fun")
