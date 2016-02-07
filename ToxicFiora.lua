@@ -17,12 +17,19 @@ mainMenu:SubMenu("Misc", "Misc")
 mainMenu.Misc:Boolean("AutoW", "use W", true)
 
 
-require 'antiCC'
-addAntiCCCallback(function(unit, spellProc)
-	if CanUseSpell(myHero,_W) == READY then
-		CastSkillShot(_W,GetOrigin(unit))
-	end
-end)
+if FileExist(COMMON_PATH .. "antiCC.lua") then
+    require 'antiCC'
+            addAntiCCCallback(function(unit, spellProc)
+                     if CanUseSpell(myHero,_W) == READY then
+                           CastSkillShot(_W,GetOrigin(unit))
+                    end
+           end)
+
+else
+
+    PrintChat("antiCC is missing , go download it and save it into your common folder!")
+
+end
 
 
  
