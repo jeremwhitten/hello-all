@@ -1,6 +1,7 @@
 if GetObjectName(GetMyHero()) ~= "Fizz" then return end
 
 require("Inspired")
+require('DamageLib')
 
 local FizzMenu = Menu("Fizz", "Fizz")
 FizzMenu:SubMenu("Combo", "Combo")
