@@ -29,10 +29,12 @@ OnTick(function (MyHero)
 	
 	if IOW:Mode() == "Combo" then
 
-		if FizzMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target, 1275) then
-		local targetPos = GetOrigin(target)
-		CastSkillShot(_R, targetPos)
+	if FizzMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target,1275) then
+		local RPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target), 1300, 135, 1275, 115, false, true)
+		if RPred.HitChance == 1 then
+		CastSkillShot(_R,RPred.PredPos)
 		end
+	end
 
 		if FizzMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target, 400) then
   		CastSkillShot(_E,GetOrigin(target))
