@@ -25,7 +25,7 @@ OnTick(function (MyHero)
 		end
 
 		if FizzMenu.Combo.W:Value() and Ready(_W)
-		Cast(_E)
+		Cast(_W)
 		end
 
 		if FizzMenu.Combo.Q:Value() and Ready(_Q) and ValidTarget(target, 550) then
