@@ -1,3 +1,7 @@
+if GetObjectName(GetMyHero()) ~= "Lulu" then return end
+
+require("Inspired")
+
 LuluMenu = Menu("Lulu", "Lulu")
 LuluMenu:SubMenu("Combo", "Combo")
 LuluMenu.Combo:Boolean("Q", "Use Q", true)
