@@ -47,7 +47,7 @@ OnTick(function (myHero)
          end
 		 
 		 if JannaMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target,800) and (GetCurrentHP(ally)/GetMaxHP(ally))<0.15 then
-                        CastTargetSpell(ally, _E)
+                        CastTargetSpell(myHero, _E)
          end
 		 
 		 for _, ally in pairs(GetAllyHeroes()) do
