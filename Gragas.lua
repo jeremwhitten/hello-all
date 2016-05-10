@@ -28,18 +28,20 @@ OnTick(function (myHero)
 	
 	if IOW:Mode() == "Combo" then
 		
-		if GragasMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target,1150) then
-			local RPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target), 1200, 132, 1150, 100, false, true)
-			if RPred.HitChance == 1 then
-				CastSkillShot(_R,RPred.PredPos)
-			end
-		end
 		if GragasMenu.Combo.Q:Value() and Ready(_Q) and ValidTarget(target,850) then
 			local QPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target), 1200, 132, 850, 100, false, true)
 			if QPred.HitChance == 1 then
 				CastSkillShot(_Q,QPred.PredPos)
 			end
 		end
+
+		if GragasMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target,1150) then
+			local RPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target), 1200, 132, 1150, 100, false, true)
+			if RPred.HitChance == 1 then
+				CastSkillShot(_R,RPred.PredPos)
+			end
+		end
+		
 		
 		if GragasMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target,600) then
 			CastSkillShot(_E,GetOrigin(target))
