@@ -16,7 +16,6 @@ JannaMenu.Harass:Slider("Mana", "if Mana % >", 30, 0, 80, 1)
 
 
 JannaMenu:Menu("Killsteal", "Killsteal")
-JannaMenu.Killsteal:Boolean("Q", "Killsteal with Q", true)
 
 
 
