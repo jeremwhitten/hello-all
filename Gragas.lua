@@ -17,9 +17,10 @@ GragasMenu.Harass:Boolean("E", "Use E", true)
 GragasMenu.Harass:Slider("Mana", "if Mana % >", 30, 0, 80, 1)
 
 GragasMenu:Menu("JungleClear", "JungleClear")
-GragasMenu.LaneClear:KeyBinding("jungleclearKey", "JungleClear Key", string.byte("V"))
-GragasMenu.LaneClear:Boolean("Q", "Use Q", true)
-GragasMenu.LaneClear:Boolean("E", "Use E", true)
+GragasMenu.JungleClear:KeyBinding("jungleclearKey", "JungleClear Key", string.byte("V"))
+GragasMenu.JungleClear:Boolean("Q", "Use Q", true)
+GragasMenu.JungleClear:Boolean("E", "Use E", true)
+GragasMenu.JungleClear:Boolean("W", "Use W", true)
 
 GragasMenu:Menu("Killsteal", "Killsteal")
 GragasMenu.Killsteal:Boolean("Q", "Killsteal with Q", true)
@@ -84,12 +85,17 @@ OnTick(function (myHero)
 	
 	for i,mobs in pairs(minionManager.objects) do
 		if KeyIsDown(GragasMenu.JungleClear.jungleclearKey:Key()) then
+		
+			if GragasMenu.JungleClear.W:Value() and Ready(_W) and ValidTarget(mobs, 550) then
+			CastSpell(_W)
+			end
+			
 			if GragasMenu.JungleClear.Q:Value() and Ready(_Q) and ValidTarget(mobs, 850) then
 				CastSkillShot(_Q, mobs.pos)
 			end
 			
-			if GragasMenu.JungleClear.E:Value() and Ready(_E) and ValidTarget(mob, 600) then
-			CastSkillShot(_W, mobs.pos)
+			if GragasMenu.JungleClear.E:Value() and Ready(_E) and ValidTarget(mobs, 600) then
+			CastSkillShot(_E, mobs.pos)
 			end
 		end
 	end
