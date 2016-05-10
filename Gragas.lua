@@ -4,12 +4,14 @@ require('DamageLib')
 
 local GragasMenu = Menu("Gragas", "Gragas")
 GragasMenu:SubMenu("Combo", "Combo")
+GragasMenu.Combo:KeyBinding("comboKey", "Combo Key", 32)
 GragasMenu.Combo:Boolean("Q", "Use Q", true)
 GragasMenu.Combo:Boolean("W", "Use W", true)
 GragasMenu.Combo:Boolean("E", "Use E", true)
 GragasMenu.Combo:Boolean("R", "Use R", true)
 
 GragasMenu:Menu("Harass", "Harass")
+GragasMenu.Harass:KeyBinding("harassKey", "Harass Key", 32)
 GragasMenu.Harass:Boolean("Q", "Use Q", true)
 GragasMenu.Harass:Boolean("E", "Use E", true)
 GragasMenu.Harass:Slider("Mana", "if Mana % >", 30, 0, 80, 1)
@@ -26,13 +28,12 @@ OnTick(function (myHero)
 	 
 	local target = GetCurrentTarget()
 	
-	if IOW:Mode() == "Combo" then
+	if KeyIsDown(GragasMenu.Combo.comboKey:Key()) then
 		
 		if GragasMenu.Combo.W:Value() and Ready(_W) and ValidTarget(target, 550) then
 			CastSpell(_W)
 		end
-		
-		
+			
 		if GragasMenu.Combo.Q:Value() and Ready(_Q) and ValidTarget(target,850) then
 			local QPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target), 1200, 132, 850, 100, false, true)
 			if QPred.HitChance == 1 then
@@ -47,16 +48,12 @@ OnTick(function (myHero)
 			end
 		end
 		
-		
 		if GragasMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target,600) then
 			CastSkillShot(_E,GetOrigin(target))
-		end
-		
-		
-		
+		end	
 	end
 	
-	if IOW:Mode() == "Harass" and GetPercentMP(myHero) >= GragasMenu.Harass.Mana:Value() then
+	if KeyIsDown(GragasMenu.Harass.harassKey:Key()) and GetPercentMP(myHero) >= GragasMenu.Harass.Mana:Value() then
 	
 		if GragasMenu.Harass.Q:Value() and Ready(_Q) and ValidTarget(target,850) then
 			local QPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target), 1200, 132, 850, 100, false, true)
@@ -82,4 +79,4 @@ OnTick(function (myHero)
 	end	
 end)
 
-print("Toxic Gragas Loaded, Have Fun!")	
+print("Toxic Gragas Loaded, Have Fun "..GetUser().."!")	
