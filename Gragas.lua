@@ -28,6 +28,11 @@ OnTick(function (myHero)
 	
 	if IOW:Mode() == "Combo" then
 		
+		if GragasMenu.Combo.W:Value() and Ready(_W) and ValidTarget(target, 550) then
+			CastSpell(_W)
+		end
+		
+		
 		if GragasMenu.Combo.Q:Value() and Ready(_Q) and ValidTarget(target,850) then
 			local QPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target), 1200, 132, 850, 100, false, true)
 			if QPred.HitChance == 1 then
