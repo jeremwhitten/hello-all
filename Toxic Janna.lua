@@ -41,17 +41,17 @@ OnTick(function (myHero)
 		end
 		
 		 for _, ally in pairs(GetAllyHeroes()) do
-                        if JannaMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target,800) and (GetCurrentHP(ally)/GetMaxHP(ally))<0.3 then
+                        if JannaMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target,800) and GetPercentHP(ally)<0.3 then
                         CastTargetSpell(ally, _E)
                         end
          	 end
 		 
-		 if JannaMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target,800) and (GetCurrentHP(myHero)/GetMaxHP(myHero))<0.15 then
+		 if JannaMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target,800) and GetPercentHP(myHero)<0.15 then
                         CastTargetSpell(myHero, _E)
          	 end
 		 
 		 for _, ally in pairs(GetAllyHeroes()) do
-                        if JannaMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target,875) and (GetCurrentHP(ally)/GetMaxHP(ally))<0.3 then
+                        if JannaMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target,875) and GetPercentHP(ally)<0.3 then
                         CastSpell(_R)
                         end
          	 end
