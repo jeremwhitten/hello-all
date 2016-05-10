@@ -84,12 +84,12 @@ OnTick(function (myHero)
 	
 	for i,mobs in pairs(minionManager.objects) do
 		if KeyIsDown(GragasMenu.JungleClear.jungleclearKey:Key()) then
-			if GragasMenu.JungleClear.Q:Value() and Ready(_Q) and ValidTarget(mob, 850) then
-				CastSkillShot(_Q)
+			if GragasMenu.JungleClear.Q:Value() and Ready(_Q) and ValidTarget(mobs, 850) then
+				CastSkillShot(_Q, mobs.pos)
 			end
 			
 			if GragasMenu.JungleClear.E:Value() and Ready(_E) and ValidTarget(mob, 600) then
-			CastSkillShot(_W)
+			CastSkillShot(_W, mobs.pos)
 			end
 		end
 	end
