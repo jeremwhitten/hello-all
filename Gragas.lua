@@ -1,6 +1,5 @@
 if GetObjectName(GetMyHero()) ~= "Gragas" then return end
 
-require("Inspired")
 require('DamageLib')
 
 local GragasMenu = Menu("Gragas", "Gragas")
