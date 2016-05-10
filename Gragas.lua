@@ -16,6 +16,10 @@ GragasMenu.Harass:Boolean("Q", "Use Q", true)
 GragasMenu.Harass:Boolean("E", "Use E", true)
 GragasMenu.Harass:Slider("Mana", "if Mana % >", 30, 0, 80, 1)
 
+GragasMenu:Menu("JungleClear", "JungleClear")
+GragasMenu.LaneClear:KeyBinding("jungleclearKey", "JungleClear Key", string.byte("V"))
+GragasMenu.LaneClear:Boolean("Q", "Use Q", true)
+GragasMenu.LaneClear:Boolean("E", "Use E", true)
 
 GragasMenu:Menu("Killsteal", "Killsteal")
 GragasMenu.Killsteal:Boolean("Q", "Killsteal with Q", true)
@@ -76,7 +80,19 @@ OnTick(function (myHero)
 			end
 		end
 		
-	end	
+	end
+	
+	for i,mobs in pairs(minionManager.objects) do
+		if KeyIsDown(GragasMenu.JungleClear.jungleclearKey:Key()) then
+			if GragasMenu.JungleClear.Q:Value() and Ready(_Q) and ValidTarget(mob, 850) then
+				CastSkillShot(_Q)
+			end
+			
+			if GragasMenu.JungleClear.E:Value() and Ready(_E) and ValidTarget(mob, 600) then
+			CastSkillShot(_W)
+			end
+		end
+	end
 end)
 
 print("Toxic Gragas Loaded, Have Fun "..GetUser().."!")	
