@@ -46,7 +46,7 @@ OnTick(function (myHero)
                         end
          end
 		 
-		 if JannaMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target,800) and (GetCurrentHP(ally)/GetMaxHP(ally))<0.15 then
+		 if JannaMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target,800) and (GetCurrentHP(myHero)/GetMaxHP(myHero))<0.15 then
                         CastTargetSpell(myHero, _E)
          end
 		 
