@@ -47,11 +47,15 @@ OnTick(function (myHero)
 		end
 
 		if GragasMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target,1150) then
-			local RPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target), 1200, 132, 1150, 100, false, true)
-			if RPred.HitChance == 1 then
-				CastSkillShot(_R,RPred.PredPos)
-			end
+		
+			local rpos = Vector(target) + Vector(target):normalized()
+			CastSkillShot(_R,rpos)
 		end
+			--local RPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target), 1200, 132, 1150, 100, false, true)
+			--if RPred.HitChance == 1 then
+				--CastSkillShot(_R,RPred.PredPos)
+			--end
+		--end
 		
 		if GragasMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target,600) then
 			CastSkillShot(_E,GetOrigin(target))
