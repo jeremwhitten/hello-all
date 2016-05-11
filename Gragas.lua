@@ -25,9 +25,18 @@ GragasMenu.JungleClear:Boolean("W", "Use W", true)
 GragasMenu:Menu("Killsteal", "Killsteal")
 GragasMenu.Killsteal:Boolean("Q", "Killsteal with Q", true)
 
+GragasMenu:SubMenu("Skinhack", "Skinhack")
+GragasMenu.Skinhack:Slider("hs", "Skin Order", 0,0,7)
 
 
 
+OnDraw(function()
+		SkinChanger()
+	end)
+
+function SkinChanger()
+	HeroSkinChanger(myHero, GragasMenu.Skinhack.hs:Value())
+end
 		
 OnTick(function (myHero)
 	 
@@ -103,6 +112,7 @@ OnTick(function (myHero)
 			end
 		end
 	end
+	
 end)
 
 print("Toxic Gragas Loaded, Have Fun "..GetUser().."!")	
