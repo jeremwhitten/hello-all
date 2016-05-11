@@ -48,7 +48,7 @@ OnTick(function (myHero)
 			CastTargetSpell(target, _E)
 		end
 		
-		if RammusMenu.Combo.W:Value() and Ready(_W) and ValidTarget(target,90) then
+		if RammusMenu.Combo.W:Value() and Ready(_W) and ValidTarget(target,300) then
 			CastSpell(_W)
 		end
 		
@@ -60,7 +60,7 @@ OnTick(function (myHero)
 	for i,mobs in pairs(minionManager.objects) do
 		if KeyIsDown(RammusMenu.JungleClear.jungleclearKey:Key()) then
 		
-			if RammusMenu.JungleClear.W:Value() and Ready(_W) and ValidTarget(mobs,90) then
+			if RammusMenu.JungleClear.W:Value() and Ready(_W) and ValidTarget(mobs,300) then
 			CastSpell(_W)
 			end
 			
