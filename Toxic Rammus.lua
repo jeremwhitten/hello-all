@@ -68,9 +68,7 @@ OnTick(function (myHero)
 			CastSpell(_Q)
 			end
 			
-			if RammusMenu.JungleClear.E:Value() and Ready(_E) and ValidTarget(mobs,300) then
-			CastSpell(_E)
-			end
+	
 		end
 	end
 	
