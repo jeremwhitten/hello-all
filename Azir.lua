@@ -27,62 +27,64 @@ AzirMenu.Escape:Boolean("escape", "Use escape", true)
 
 OnTick(function (myHero)
 
-local target = GetCurrentTarget()
+	local target = GetCurrentTarget()
 
-	if KeyIsDown(AzirMenu.Combo.comboKey:Key()) then
+		if KeyIsDown(AzirMenu.Combo.comboKey:Key()) then
 	
-		if AzirMenu.Combo.W:Value() and Ready(_W) and ValidTarget(target, 450) then 
-		local WPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target),1300,250,450,90,false,false)
-		if WPred.HitChance == 1 then
-		CastSkillShot(_W,WPred.PredPos)
-		end
-		end
+					if AzirMenu.Combo.W:Value() and Ready(_W) and ValidTarget(target, 450) then 
+				local WPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target),1300,250,450,90,false,false)
+						if WPred.HitChance == 1 then
+							CastSkillShot(_W,WPred.PredPos)
+					end
+						end
 		
-		if AzirMenu.Combo.Q:Value() and Ready(_Q) and ValidTarget(target, 750) then
-		local QPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target),1200,250,750,90,false,false)
-		if QPred.HitChance == 1 then
-		CastSkillShot(_Q,QPred.PredPos)
-		end
-		end
 		
-		if AzirMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target,450) then
-			local rpos = Vector(target) + Vector(target):normalized()
-			CastSkillShot(_R,rpos)
+					if AzirMenu.Combo.Q:Value() and Ready(_Q) and ValidTarget(target, 750) then
+				local QPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target),1200,250,750,90,false,false)
+						if QPred.HitChance == 1 then
+							CastSkillShot(_Q,QPred.PredPos)
+						end
+					end
+		
+				if AzirMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target,450) then
+				local rpos = Vector(target) + Vector(target):normalized()
+					CastSkillShot(_R,rpos)
+				end
 		end
 		
 		
 		
 	if KeyIsDown(AzirMenu.Harass.harassKey:Key()) and GetPercentMP(myHero) >= AzirMenu.Harass.Mana:Value() then
 	
-	if AzirMenu.Combo.W:Value() and Ready(_W) and ValidTarget(target, 450) then 
-		local WPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target),1300,250,450,90,false,false)
-		if WPred.HitChance == 1 then
-		CastSkillShot(_W,WPred.PredPos)
-		end
-		end
+						if AzirMenu.Combo.W:Value() and Ready(_W) and ValidTarget(target, 450) then 
+				local WPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target),1300,250,450,90,false,false)
+							if WPred.HitChance == 1 then
+								CastSkillShot(_W,WPred.PredPos)
+							end
+						end
 		
-		if AzirMenu.Combo.Q:Value() and Ready(_Q) and ValidTarget(target, 750) then
-		local QPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target),1200,250,750,90,false,false)
-		if QPred.HitChance == 1 then
-		CastSkillShot(_Q,QPred.PredPos)
-		end
-		end
+						if AzirMenu.Combo.Q:Value() and Ready(_Q) and ValidTarget(target, 750) then
+				local QPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target),1200,250,750,90,false,false)
+							if QPred.HitChance == 1 then
+								CastSkillShot(_Q,QPred.PredPos)
+							end
+						end
 		
 	end
 	
-	if KeyIsDown(AzirMenu.Escape.escapeKey:Key()) then
-        if Ready(_Q) and Ready(_W) and Ready(_E) then
+			if AzirMenu.Escape.escape:Value() then
+				if Ready(_Q) and Ready(_W) and Ready(_E) then
         local wPos = myHero.pos + (cursorPos - myHero.pos):normalized()*450
-        CastSkillShot(_W,wPos)
+					CastSkillShot(_W,wPos)
         DelayAction(function()
-        CastSkillShot(_Q,cursorPos)
+					CastSkillShot(_Q,cursorPos)
         DelayAction(function()
-        CastSpell(_E)
-        end,0.001)
-        end,0.001)
-		end
+				CastSpell(_E)
+				end,0.001)
+				end,0.001)
+				end
 	end
-end
+
 end)
 			
 			
