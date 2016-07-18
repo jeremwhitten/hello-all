@@ -21,8 +21,8 @@ AzirMenu.LaneClear:Boolean("E", "Use E", true)
 
 AzirMenu:Menu("Misc", "Misc")
 AzirMenu:SubMenu("Escape", "Escape")
-AzirMenu.Escape:KeyBinding("EscapeKey", "Escape Key", string.byte("Z"))
-AzirMenu.Escape:Boolean("WQE" "Use WQE", true)
+AzirMenu.Escape:KeyBinding("EscapeKey", "Escape Key", string.byte("S"))
+AzirMenu.Escape:Boolean("escape", "Use escape", true)
 
 
 OnTick(function (myHero)
@@ -53,6 +53,7 @@ local target = GetCurrentTarget()
 		
 		
 	if KeyIsDown(AzirMenu.Harass.harassKey:Key()) and GetPercentMP(myHero) >= AzirMenu.Harass.Mana:Value() then
+	
 	if AzirMenu.Combo.W:Value() and Ready(_W) and ValidTarget(target, 450) then 
 		local WPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target),1300,250,450,90,false,false)
 		if WPred.HitChance == 1 then
@@ -70,6 +71,21 @@ local target = GetCurrentTarget()
 	end
 	
 	if KeyIsDown(AzirMenu.Escape.escapeKey:Key()) then
+        if Ready(_Q) and Ready(_W) and Ready(_E) then
+        local wPos = myHero.pos + (cursorPos - myHero.pos):normalized()*450
+        CastSkillShot(_W,wPos)
+        DelayAction(function()
+        CastSkillShot(_Q,cursorPos)
+        DelayAction(function()
+        CastSpell(_E)
+        end,0.001)
+        end,0.001)
+		end
+	end
+end
+end)
+			
+			
 	
 	
 	
