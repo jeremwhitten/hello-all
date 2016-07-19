@@ -126,8 +126,11 @@ OnTick(function (myHero)
                     CastSkillShot(_Q,QPred.PredPos)
         DelayAction(function()
                 CastSpell(_E)
+        DelayAction(function()
+        	CastSkillShot(_R,rpos)
 				end,0.001)
-				end,0.002)
+			end,0.002)
+			end,0.003)
 				
 		end
 		end
