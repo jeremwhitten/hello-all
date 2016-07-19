@@ -21,8 +21,23 @@ AzirMenu.LaneClear:Boolean("E", "Use E", true)
 
 AzirMenu:Menu("Misc", "Misc")
 AzirMenu:SubMenu("Escape", "Escape")
-AzirMenu.Escape:KeyBinding("EscapeKey", "Escape Key", string.byte("S"))
+AzirMenu.Escape:KeyBinding("EscapeKey", "Escape Key", string.byte("Z"))
 AzirMenu.Escape:Boolean("escape", "Use escape", true)
+
+AzirMenu:Menu("Insec", "Insec")
+AzirMenu.Insec:KeyBinding("InsecKey", "Insec Key", string.byte("T"))
+AzirMenu.Insec:Boolean("Insec", "Use Insec", true)
+
+AzirMenu:SubMenu("Skinhack", "Skinhack")
+AzirMenu.Skinhack:Slider("hs", "Skin Order", 0,0,7)
+
+OnDraw(function()
+		SkinChanger()
+	end)
+
+function SkinChanger()
+	HeroSkinChanger(myHero, AzirMenu.Skinhack.hs:Value())
+end
 
 
 OnTick(function (myHero)
@@ -72,18 +87,54 @@ OnTick(function (myHero)
 		
 	end
 	
-			if AzirMenu.Escape.escape:Value() then
-				if Ready(_Q) and Ready(_W) and Ready(_E) then
-        local wPos = myHero.pos + (cursorPos - myHero.pos):normalized()*450
-					CastSkillShot(_W,wPos)
+		if AzirMenu.Escape.escape:Value() and AzirMenu.Escape.EscapeKey:Value() then
+					if Ready(_Q) and Ready(_W) and Ready(_E) then
+	local cursorPos = GetMousePos()
+			local wPos = myHero.pos + (cursorPos - myHero.pos):normalized()*450
+                    CastSkillShot(_W,wPos)
         DelayAction(function()
-					CastSkillShot(_Q,cursorPos)
+                    CastSkillShot(_Q,cursorPos)
         DelayAction(function()
-				CastSpell(_E)
-				end,0.001)
-				end,0.001)
-				end
+                CastSpell(_E)
+					end,0.001)
+					end,0.001)
+					end
+		end
+		
+	for i,mobs in pairs(minionManager.objects) do	
+		if KeyIsDown(AzirMenu.LaneClear.LaneClearKey:Key()) then
+			
+			if AzirMenu.LaneClear.W:Value() and Ready(_W) and ValidTarget(mobs, 450) then
+			CastSkillShot(_W, mobs.pos)
+			end
+			
+			if AzirMenu.LaneClear.Q:Value() and Ready(_Q) and ValidTarget(mobs, 750) then
+			CastSkillShot(_Q, mobs.pos)
+			end
+		end
 	end
+	
+	
+		if KeyIsDown(AzirMenu.Insec.InsecKey:Key()) then	
+			if Ready(_Q) and Ready(_W) and Ready(_E) and Ready(_R) and ValidTarget(target,750) then
+		local cursorPos = GetMousePos()
+		local QPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target),1200,250,750,90,false,false)
+		local wPos = myHero.pos + (cursorPos - myHero.pos):normalized()*450
+		local rpos = Vector(target) + Vector(target):normalized()*450
+                    CastSkillShot(_W,wPos)
+        DelayAction(function()
+                    CastSkillShot(_Q,QPred.PredPos)
+        DelayAction(function()
+                CastSpell(_E)
+				end,0.001)
+				end,0.002)
+				
+		end
+		end
+					
+		
+			
+		
 
 end)
 			
@@ -95,4 +146,4 @@ end)
 		
 	
 	
-	print ("Loaded")
+	print ("Toxic Azir")
