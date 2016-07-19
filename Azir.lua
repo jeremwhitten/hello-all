@@ -102,7 +102,7 @@ OnTick(function (myHero)
 		end
 		
 	for i,mobs in pairs(minionManager.objects) do	
-		if KeyIsDown(AzirMenu.LaneClear.LaneClearKey:Key()) then
+		if KeyIsDown(AzirMenu.LaneClear.laneclearKey:Key()) then
 			
 			if AzirMenu.LaneClear.W:Value() and Ready(_W) and ValidTarget(mobs, 450) then
 			CastSkillShot(_W, mobs.pos)
