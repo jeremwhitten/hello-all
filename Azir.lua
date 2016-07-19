@@ -84,6 +84,7 @@ OnTick(function (myHero)
 	end
 	
 	if AzirMenu.Escape.escape:Value() and AzirMenu.Escape.EscapeKey:Value() then
+	MoveToXYZ(GetMousePos())
 		if Ready(_Q) and Ready(_W) and Ready(_E) then
 			local cursorPos = GetMousePos()
 			local wPos = myHero.pos + (cursorPos - myHero.pos):normalized()*450
@@ -111,18 +112,20 @@ OnTick(function (myHero)
 	
 	
 	if KeyIsDown(AzirMenu.Insec.InsecKey:Key()) then	
+	MoveToXYZ(GetMousePos())
 		if Ready(_Q) and Ready(_W) and Ready(_E) and Ready(_R) and ValidTarget(target,750) then
+		
 			local cursorPos = GetMousePos()
 			local QPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target),1200,250,750,90,false,false)
 			local wPos = myHero.pos + (cursorPos - myHero.pos):normalized()*450
-			local rpos = Vector(target) + Vector(target):normalized()*450
+			local RPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target),1200,250,250,90,false,false)
 			CastSkillShot(_W,wPos)
 			DelayAction(function()
 				CastSkillShot(_Q,QPred.PredPos)
 				DelayAction(function()
 					CastSpell(_E)
 					DelayAction(function()
-						CastSkillShot(_R,rpos)
+						CastSkillShot(_R,RPred.PredPos)
 					end,0.001)
 				end,0.002)
 			end,0.003)
