@@ -17,7 +17,7 @@ AzirMenu.Harass:Slider("Mana", "if Mana % >", 30, 0, 80, 1)
 AzirMenu:Menu("LaneClear", "LaneClear")
 AzirMenu.LaneClear:KeyBinding("laneclearKey", "LaneClear Key", string.byte("V"))
 AzirMenu.LaneClear:Boolean("Q", "Use Q", true)
-AzirMenu.LaneClear:Boolean("E", "Use E", true)
+AzirMenu.LaneClear:Boolean("W", "Use W", true)
 
 AzirMenu:Menu("Misc", "Misc")
 AzirMenu:SubMenu("Escape", "Escape")
