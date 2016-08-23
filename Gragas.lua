@@ -57,7 +57,7 @@ OnTick(function (myHero)
 
 		if GragasMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target,1150) then
 		
-			local rpos = Vector(target) + Vector(target):normalized()
+			local rpos = Vector(target) + Vector(target):normalized()*1250
 			CastSkillShot(_R,rpos)
 		end
 			--local RPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target), 1200, 132, 1150, 100, false, true)
@@ -115,4 +115,4 @@ OnTick(function (myHero)
 	
 end)
 
-print("Toxic Gragas Loaded, Have Fun "..GetUser().."!")	
+print("Toxic Gragas Loaded, Have Fun Dreamer "..GetUser().."!")	
