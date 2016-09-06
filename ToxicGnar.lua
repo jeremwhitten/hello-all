@@ -67,7 +67,7 @@ if KeyIsDown(GnarMenu.Combo.comboKey:Key()) then
 	end
 	
 	if GnarMenu.Combo.R:Value()then
-	self:CastR()
+	CastR()
 	end
 	
 	
