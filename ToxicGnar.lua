@@ -94,7 +94,28 @@ if KeyIsDown(GnarMenu.Combo.comboKey:Key()) then
 	
  end
  
+	for _,M in pairs(minionManager.objects) do
+	if ValidTarget(M,1100) then
+
+	for _, M in pairs(minionManager.objects) do
+	if ValidTarget(M,1100) then 
+	local z = (GetCastLevel(myHero,_Q)*20)+(GetBonusAP(myHero)*.65)+(GetBaseDamage(myHero))
+	local hp = GetCurrentHP(M)
+	local Dmg = CalcDamage(myHero, M, z)
+		if KeyIsDown(GnarMenu.LaneClear.laneclearKey:Key())then
+			if GnarMenu.LaneClear.Q:Value() and dmg > hp then
+			CastTargetSpell(M, _Q)
+			end
+		end
+	end
+	end
+	end
+	end
+	
+	
+	end
+ 
 end)
 
-print ("Toxic Gnar") 
+print ("Toxic Gnar Loaded <3") 
 	
