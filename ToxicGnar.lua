@@ -12,16 +12,34 @@ GnarMenu.Combo:Boolean("R", "Use R", true)
 GnarMenu:Menu("LaneClear", "LaneClear")
 GnarMenu.LaneClear:KeyBinding("laneclearKey", "LaneClear Key", string.byte("V"))
 GnarMenu.LaneClear:Boolean("Q", "Use Q", true)
+GnarMenu.LaneClear:Boolean("W", "Use W", true)
 
 
 OnTick(function (myHero)
 
 	local target = GetCurrentTarget()
-
+	local MiniGnar = (GotBuff(myHero, "gnartransform") == 0 or GotBuff(myHero, "gnarfuryhigh") == 1)
+	local MegaGnar = (GotBuff(myHero, "gnartransformsoon") == 1 or GotBuff(myHero, "gnartransform") == 1)
 	if KeyIsDown(GnarMenu.Combo.comboKey:Key()) then
+	
+	
+	
+		if GnarMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target, 470) then
+			if GetCastName(myHero,_E) == "GnarBigE" and MegaGnar then
+			local EPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),1500,100,500,475,false,false)
+			if EPred.HitChance == 1 then
+			CastSkillShot(_E,EPred.PredPos)
+			end
+			end	
+		end
+	
+		if GnarMenu.Combo.R:Value() then
+			CastR()
+			end
+		
 
 		if GnarMenu.Combo.Q:Value() and Ready(_Q) and ValidTarget(target, 1100) then
-			if GetCastName(myHero,_Q) == "GnarQ" and GotBuff(myHero, "gnartransformsoon") == 0 then
+			if GetCastName(myHero,_Q) == "GnarQ" and MiniGnar then
 			local QPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),1400,100,1100,90,false,true)
 			if QPred.HitChance == 1 then
 			CastSkillShot(_Q,QPred.PredPos)
@@ -30,7 +48,7 @@ OnTick(function (myHero)
 		end
 		
 		if GnarMenu.Combo.Q:Value() and Ready(_Q) and ValidTarget(target, 1100) then
-			if GetCastName(myHero,_Q) == "GnarBigQ" and GotBuff(myHero, "gnartransform") == 1 then
+			if GetCastName(myHero,_Q) == "GnarBigQ" and MegaGnar then
 			local QPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),2100,100,1100,90,true,true)
 			if QPred.HitChance == 1 then
 			CastSkillShot(_Q,QPred.PredPos)
@@ -40,7 +58,7 @@ OnTick(function (myHero)
 		
 		
 		if GnarMenu.Combo.W:Value() and Ready(_W) and ValidTarget(target, 525) then
-			if GetCastName(myHero,_W) == "GnarBigW" and GotBuff(myHero, "gnartransform") == 1 then
+			if GetCastName(myHero,_W) == "GnarBigW" and MegaGnar then
 			local WPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),600,250,525,90,false,true)
 			if WPred.HitChance == 1 then
 			CastSkillShot(_W,WPred.PredPos)
@@ -49,24 +67,6 @@ OnTick(function (myHero)
 		end
 	
 	
-		if GnarMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target, 500) then
-			if GetCastName(myHero,_W) == "GnarE" and GotBuff(myHero, "gnartransformsoon") == 1 then
-			local EPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),1500,100,500,120,false,false)
-			if EPred.HitChance == 1 then
-			CastSkillShot(_E,EPred.PredPos)
-			end
-			end	
-		end
-	
-	
-		if GnarMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target, 500) then
-			if GetCastName(myHero,_W) == "GnarBigE" and GotBuff(myHero, "gnartransform") == 1 then
-			local EPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),1500,100,500,475,false,false)
-			if EPred.HitChance == 1 then
-			CastSkillShot(_E,EPred.PredPos)
-			end
-			end	
-		end
 	
 		if GnarMenu.Combo.R:Value() then
 		CastR()
@@ -79,15 +79,15 @@ OnTick(function (myHero)
 	function CastR()
 	
 		for _,unit in pairs(GetEnemyHeroes()) do
-			local distance=590 - GetDistance(myHero,unit)
+			local distance= 590 - GetDistance(myHero,unit)
 			local RPred = GetPredictionForPlayer(GetOrigin(myHero),unit,GetMoveSpeed(unit),3000,0,590,590,false,true)
 			local PredPos = Vector(RPred.PredPos)
 			local HeroPos = Vector(myHero)
 			local maxRRange = PredPos - (PredPos - HeroPos) * ( - distance / GetDistance(RPred.PredPos))
 			local shootLine = LineSegment(Point(PredPos.x, PredPos.y, PredPos.z), Point(maxRRange.x, maxRRange.y, maxRRange.z))
+		
+		
 		for i, Pos in pairs(shootLine:__getPoints()) do
-		
-		
 		
 			if MapPosition:inWall(Pos) and Ready(_R) and ValidTarget(target,590) and GetDistance(myHero,unit) <= 590 then
 			CastSkillShot(_R,RPred.PredPos)
@@ -96,24 +96,27 @@ OnTick(function (myHero)
 		end
 	
 	end
- 
-	for _,M in pairs(minionManager.objects) do
-		if ValidTarget(M,1100) then
-
-	for _, M in pairs(minionManager.objects) do
-			if ValidTarget(M,1100) then 
-		local z = (GetCastLevel(myHero,_Q)*20)+(GetBonusAP(myHero)*.65)+(GetBaseDamage(myHero))
-		local hp = GetCurrentHP(M)
-		local Dmg = CalcDamage(myHero, M, z)
-				if KeyIsDown(GnarMenu.LaneClear.laneclearKey:Key())then
-					if GnarMenu.LaneClear.Q:Value() and dmg > hp then
-			CastTargetSpell(M, _Q)
-					end
-				end
+	
+	
+		
+	
+ for i,mobs in pairs(minionManager.objects) do
+		if KeyIsDown(GnarMenu.LaneClear.laneclearKey:Key()) then
+			if GnarMenu.LaneClear.W:Value() and ValidTarget(mobs,400)then
+			CastSkillShot(_W,mobs)
 			end
-	end
+			
+			if GnarMenu.LaneClear.Q:Value() and ValidTarget(mobs,1100)then
+			CastSkillShot(_Q,mobs)
+			end
+			end
+			
 		end
-	end
+	
+		
+		
+	
+	
 	
 	
 	
