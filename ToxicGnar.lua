@@ -14,12 +14,32 @@ GnarMenu.LaneClear:KeyBinding("laneclearKey", "LaneClear Key", string.byte("V"))
 GnarMenu.LaneClear:Boolean("Q", "Use Q", true)
 GnarMenu.LaneClear:Boolean("W", "Use W", true)
 
+GnarMenu:Menu("Misc", "Misc")
+GnarMenu.Misc:Boolean("Ignite", "Use Ignite", true)
+
+GnarMenu:Menu("KS", "KS")
+GnarMenu.KS:Boolean("Q", "Use Q", true)
+GnarMenu.KS:Boolean("W", "Use W", true)
+GnarMenu.KS:Boolean("W", "Use W", true)
+GnarMenu.KS:Boolean("R", "Use R", true)
+
+GnarMenu:SubMenu("Skinhack", "Skinhack")
+GnarMenu.Skinhack:Slider("hs", "Skin Order", 0,0,5)
+
+
 
 OnTick(function (myHero)
 
 	local target = GetCurrentTarget()
 	local MiniGnar = (GotBuff(myHero, "gnartransform") == 0 or GotBuff(myHero, "gnarfuryhigh") == 1)
 	local MegaGnar = (GotBuff(myHero, "gnartransformsoon") == 1 or GotBuff(myHero, "gnartransform") == 1)
+	local miniQDMG = -30 + 30 * GetCastLevel(myHero, _Q) + myHero.totalDamage * 1.15
+	local MegaQDMG = -35 + 40 * GetCastLevel(myHero, _Q) + myHero.totalDamage * 1.2
+	local MegaWDMG = 5 + 20 * GetCastLevel(myHero, _W) + myHero.totalDamage
+	local EDMG = -20 + 40 * GetCastLevel(myHero, _E) + GetMaxHP(myHero) * 0.06
+	local RDMG = 100 + 100 * GetCastLevel(myHero, _R) + GetBonusDmg(myHero) * 0.2 + GetBonusAP(myHero) * 0.5
+	
+	
 	if KeyIsDown(GnarMenu.Combo.comboKey:Key()) then
 	
 	
@@ -112,6 +132,82 @@ OnTick(function (myHero)
 			end
 			
 		end
+		
+	function Ignite()
+		for _, G in pairs(GetEnemyHeroes()) do
+		if ValidTarget(G, 700) and Ignite and GnarMenu.Misc.Ignite:Value() and CanUseSpell(myHero,_Q) ~= READY and GetDistance(G) > 400 then 
+				if CanUseSpell(GetMyHero(), Ignite) == READY and (20*GetLevel(GetMyHero())+50) > GetCurrentHP(G)+GetHPRegen(G)*2.5 and GetDistanceSqr(GetOrigin(G)) < 600*600 then
+                CastTargetSpell(G, Ignite)
+				end
+			end
+		end
+	end
+	
+	
+	
+	for _,enemy in pairs(GetEnemyHeroes()) do
+		if GnarMenu.KS.Q:Value() and Ready(_Q) and ValidTarget(enemy) and GetCastName(myHero, _Q) == "GnarQ" and MiniGnar then
+			if GetCurrentHP(enemy) + GetDmgShield(enemy) < CalcDamage(myHero, enemy, miniQDMG, 0) then
+			local QPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),1400,100,1100,90,false,true)
+				if QPred.HitChance == 1 then
+				CastSkillShot(_Q,QPred.PredPos)
+				end
+			end
+		end
+		
+		
+		if GnarMenu.KS.Q:Value() and Ready(_Q) and ValidTarget(enemy) and GetCastName(myHero, _Q) == "GnarBigQ" and MegaGnar then
+			if GetCurrentHP(enemy) + GetDmgShield(enemy) < CalcDamage(myHero, enemy, MegaQDMG, 0) then
+			local QPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),2100,100,1100,90,true,true)
+				if QPred.HitChance == 1 then
+				CastSkillShot(_Q,QPred.PredPos)
+				end
+			end
+		end
+		
+		
+		if GnarMenu.KS.W:Value() and Ready(_W) and ValidTarget(enemy) and GetCastName(myHero, _W) == "GnarBigW" and MegaGnar then
+			if GetCurrentHP(enemy) + GetDmgShield(enemy) < CalcDamage(myHero, enemy, MegaWDMG, 0) then
+			local WPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),600,250,525,90,false,true)
+				if WPred.HitChance == 1 then
+				CastSkillShot(_W,WPred.PredPos)
+				end
+			end
+		end
+		
+		if GnarMenu.KS.E:Value() and Ready(_E) and ValidTarget(enemy) and GetCastName(myHero, _E) == "GnarBigE" and MegaGnar then
+			if GetCurrentHP(enemy) + GetDmgShield(enemy) < CalcDamage(myHero, enemy, MegaEDMG, 0) then
+			local EPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),1500,100,500,475,false,false)
+				if EPred.HitChance == 1 then
+				CastSkillShot(_E,EPred.PredPos)
+				end
+			end
+		end
+		
+		if GnarMenu.KS.E:Value() and Ready(_E) and ValidTarget(enemy) and GetCastName(myHero, _E) == "GnarE" and MiniGnar then
+			if GetCurrentHP(enemy) + GetDmgShield(enemy) < CalcDamage(myHero, enemy, MegaEDMG, 0) then
+			local EPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),1500,100,500,475,false,false)
+				if EPred.HitChance == 1 then
+				CastSkillShot(_E,EPred.PredPos)
+				end
+			end
+		end
+		
+	end
+	
+	OnDraw(function()
+	SkinChanger()
+end)
+
+function SkinChanger()
+	HeroSkinChanger(myHero, GnarMenu.Skinhack.hs:Value())
+end
+	
+	
+		
+		
+				
+		
 	
 		
 		
