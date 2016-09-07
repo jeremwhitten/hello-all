@@ -73,7 +73,7 @@ if KeyIsDown(GnarMenu.Combo.comboKey:Key()) then
 	
 	
 	
-	function Gnar:CastR()
+	function CastR()
 	
 	for _,unit in pairs(GetEnemyHeroes()) do
 		local distance=590 - GetDistance(myHero,unit)
@@ -81,7 +81,7 @@ if KeyIsDown(GnarMenu.Combo.comboKey:Key()) then
         local PredPos = Vector(RPred.PredPos)
         local HeroPos = Vector(myHero)
         local maxRRange = PredPos - (PredPos - HeroPos) * ( - distance / GetDistance(RPred.PredPos))
-		local shootLine = Line(Point(PredPos.x, PredPos.y, PredPos.z), Point(maxRRange.x, maxRRange.y, maxRRange.z))
+		local shootLine = LineSegment(Point(PredPos.x, PredPos.y, PredPos.z), Point(maxRRange.x, maxRRange.y, maxRRange.z))
 	for i, Pos in pairs(shootLine:__getPoints()) do
 		
 		
