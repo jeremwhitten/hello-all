@@ -30,11 +30,10 @@ GnarMenu.Misc:Boolean("Ignite", "Use Ignite", true)
 GnarMenu:Menu("KS", "KS")
 GnarMenu.KS:Boolean("Q", "Use Q", true)
 GnarMenu.KS:Boolean("W", "Use W", true)
-GnarMenu.KS:Boolean("W", "Use W", true)
+GnarMenu.KS:Boolean("E", "Use E", true)
 GnarMenu.KS:Boolean("R", "Use R", true)
 
-GnarMenu:SubMenu("Skinhack", "Skinhack")
-GnarMenu.Skinhack:Slider("hs", "Skin Order", 0,0,5)
+
 
 
 
@@ -205,13 +204,7 @@ OnTick(function (myHero)
 		
 	end
 	
-	OnDraw(function()
-	SkinChanger()
-end)
-
-function SkinChanger()
-	HeroSkinChanger(myHero, GnarMenu.Skinhack.hs:Value())
-end
+	
 	
 	
 		
