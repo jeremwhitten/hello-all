@@ -1,4 +1,14 @@
 if GetObjectName(GetMyHero()) ~= "Gnar" then return end
+
+	local v = 1.0
+	
+	GetWebResultAsync("https://raw.githubusercontent.com/jeremwhitten/hello-all/master/ToxicGnar.version", function(num)
+	if v < tonumber(num) then
+		PrintChat("[ToxicGnar] Update Available. x2 f6 to Update.")
+		DownloadFileAsync("https://raw.githubusercontent.com/jeremwhitten/hello-all/master/ToxicGnar.lua", SCRIPT_PATH .. "ToxicGnar.lua", function() PrintChat("Have fun!") return end)
+	end
+	end)
+	
 require("MapPositionGOS")
 
 local GnarMenu = Menu("Gnar", "Gnar")
