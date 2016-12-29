@@ -42,13 +42,13 @@ end)
 OnTick(function (myHero)
 	 
 	local target = GetCurrentTarget()
-	local RPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target), 1300, 135, 1275, 120, false, true)
+	local RPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target), 1350, 250, 1275, 120, false, true)
 	
 	
 	if KeyIsDown(FizzMenu.Combo.comboKey:Key()) then
 
 		if FizzMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target,1275) then
-			local RPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target), 1300, 135, 1275, 120, false, true)
+			local RPred = GetPredictionForPlayer(GetOrigin(myHero), target, GetMoveSpeed(target), 1350, 250, 1275, 120, false, true)
 			if RPred.HitChance == 1 then
 				CastSkillShot(_R,RPred.PredPos)
 			end
@@ -67,7 +67,7 @@ OnTick(function (myHero)
   		end
 	
 
-		if FizzMenu.Combo.W:Value() and Ready(_W) then
+		if FizzMenu.Combo.W:Value() and Ready(_W) and ValidTarget(target, 300) then
 			CastSpell(_W)
 		end
 
