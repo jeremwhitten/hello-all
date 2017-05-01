@@ -1,5 +1,13 @@
 if GetObjectName(GetMyHero()) ~= "Xayah" then return end
 
+require("OpenPredict")
+require("DamageLib")
+
+local XayahQ = {range = 1075, speed = 2000, delay = 0.25, width = 75, collision = false}
+local XayahW = {range = 1000, delay = 0.25}
+local XayahE = {range = 1075, speed = 2000, delay = 0.00, width = 75, collision = false}
+local XayahR = {range = 1040, speed = 2000, delay = 0.50, angle = 150, collision = false, aoe = true}
+
 local XayahMenu = Menu("Xayah", "Xayah")
 XayahMenu:SubMenu("Combo", "Combo")
 XayahMenu.Combo:KeyBinding("comboKey", "Combo Key", 32)
@@ -31,9 +39,9 @@ OnTick(function(myHero)
 		
 		
 			if XayahMenu.Combo.Q:Value() and Ready(_Q) and ValidTarget(target, 1075) then
-			local QPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),1075,2000,0.25,75,false,false)
-			if QPred.HitChance == 1 then
-			CastSkillShot(_Q,QPred.PredPos)
+			local Qpred = GetPrediction(target, XayahQ)
+			if Qpred.hitChance == 0.25 then
+			CastSkillShot(_Q,Qpred.castPos)
 			end
 			end	
 			
@@ -42,16 +50,16 @@ OnTick(function(myHero)
 			end
 			
 			if XayahMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target, 1075) then
-			local EPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),1075,2000,0,75,false,false)
-			if EPred.HitChance == 1 then
+			local Epred = GetPrediction(target, XayahE)
+			if Epred.hitChance == 0.25 then
 			CastSpell(_E)
 			end
 			end
 			
-			if XayahMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target, 1040) and GetCurrentHP(enemy) < getdmg("R",enemy ,myHero) then
-			local RPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),1040,2000,0.50,150,false,false)
-			if RPred.HitChance == 1 then
-			CastSpell(_R)
+			if XayahMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target, 1040) then
+			local RPred = GetPrediction(target, XayahR)
+			if Rpred.hitChance == 0.25 then
+			CastSkillShot(_R,Rpred.castPos)
 			end
 			end
 			
