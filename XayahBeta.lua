@@ -40,7 +40,7 @@ OnTick(function(myHero)
 		
 			if XayahMenu.Combo.Q:Value() and Ready(_Q) and ValidTarget(target, 1075) then
 			local Qpred = GetPrediction(target, XayahQ)
-			if Qpred.hitChance == 0.25 then
+			if Qpred.hitChance >= 0.25 then
 			CastSkillShot(_Q,Qpred.castPos)
 			end
 			end	
@@ -51,15 +51,17 @@ OnTick(function(myHero)
 			
 			if XayahMenu.Combo.E:Value() and Ready(_E) and ValidTarget(target, 1075) then
 			local Epred = GetPrediction(target, XayahE)
-			if Epred.hitChance == 0.25 then
+			if Epred.hitChance >= 0.25 then
 			CastSpell(_E)
 			end
 			end
 			
 			if XayahMenu.Combo.R:Value() and Ready(_R) and ValidTarget(target, 1040) then
-			local RPred = GetPrediction(target, XayahR)
-			if Rpred.hitChance == 0.25 then
+			if GetCurrentHP(enemy) < getdmg("R", enemy, myHero)then
+			local Rpred = GetLinearAOEPrediction(target, XayahR)
+			if Rpred.hitChance >= 0.25 then
 			CastSkillShot(_R,Rpred.castPos)
+			end
 			end
 			end
 			
