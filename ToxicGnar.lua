@@ -1,6 +1,6 @@
 if GetObjectName(GetMyHero()) ~= "Gnar" then return end
 
-	local v = 1.0
+	local v = 2.0
 	
 	GetWebResultAsync("https://raw.githubusercontent.com/jeremwhitten/hello-all/master/ToxicGnar.version", function(num)
 	if v < tonumber(num) then
@@ -42,11 +42,11 @@ OnTick(function (myHero)
 	local target = GetCurrentTarget()
 	local MiniGnar = (GotBuff(myHero, "gnartransform") == 0 or GotBuff(myHero, "gnarfuryhigh") == 1)
 	local MegaGnar = (GotBuff(myHero, "gnartransformsoon") == 1 or GotBuff(myHero, "gnartransform") == 1)
-	local miniQDMG = -30 + 30 * GetCastLevel(myHero, _Q) + myHero.totalDamage * 1.15
-	local MegaQDMG = -35 + 40 * GetCastLevel(myHero, _Q) + myHero.totalDamage * 1.2
+	local miniQDMG = -30 + 40 * GetCastLevel(myHero, _Q) + myHero.totalDamage * 1.15
+	local MegaQDMG = -35 + 50 * GetCastLevel(myHero, _Q) + myHero.totalDamage * 1.2
 	local MegaWDMG = 5 + 20 * GetCastLevel(myHero, _W) + myHero.totalDamage
 	local EDMG = -20 + 40 * GetCastLevel(myHero, _E) + GetMaxHP(myHero) * 0.06
-	local RDMG = 100 + 100 * GetCastLevel(myHero, _R) + GetBonusDmg(myHero) * 0.2 + GetBonusAP(myHero) * 0.5
+	local RDMG = 95 + 100 * GetCastLevel(myHero, _R) + GetBonusDmg(myHero) * 0.2 + GetBonusAP(myHero) * 0.5
 	
 	
 	if KeyIsDown(GnarMenu.Combo.comboKey:Key()) then
@@ -177,7 +177,7 @@ OnTick(function (myHero)
 		
 		if GnarMenu.KS.W:Value() and Ready(_W) and ValidTarget(enemy) and GetCastName(myHero, _W) == "GnarBigW" and MegaGnar then
 			if GetCurrentHP(enemy) + GetDmgShield(enemy) < CalcDamage(myHero, enemy, MegaWDMG, 0) then
-			local WPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),600,250,525,90,false,true)
+			local WPred = GetPredictionForPlayer(GetOrigin(myHero),target,GetMoveSpeed(target),550,250,525,90,false,true)
 				if WPred.HitChance == 1 then
 				CastSkillShot(_W,WPred.PredPos)
 				end
