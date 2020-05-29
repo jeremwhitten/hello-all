@@ -245,7 +245,7 @@ Type = _G.SPELLTYPE_LINE, Delay = 0.25, Radius = 75, Range = 1550, Speed = math.
 function Velkoz:LoadMenu()                     
 	
 --MainMenu
-self.Menu = MenuElement({type = MENU, id = "Velkoz", name = "Velkoz Version v.002"})
+self.Menu = MenuElement({type = MENU, id = "Velkoz", name = "Velkoz Beta.04"})
 		
 --ComboMenu  
 self.Menu:MenuElement({type = MENU, id = "Combo", name = "Combo Mode"})
