@@ -301,7 +301,7 @@ local qb = 0;
 local sPos = 0;
 
 
-
+Callback.Add("Draw", function() Draw2() end);
 local function IsReady(slot)
 	return myHero:GetSpellData(slot).currentCd == 0 and myHero:GetSpellData(slot).level > 0
 end
@@ -367,7 +367,7 @@ end
 
 -- Ult KillSteal --
 function Velkoz:KSUlt()
-local target = GetTarget(2100)     	
+local target = GetTarget(2200)     	
 if target == nil then return end
 	if IsValid(target) then
 		local Rdmg = getdmg("R", target, myHero) -- Dmg data from DamageLib
@@ -405,7 +405,45 @@ if target == nil then return end
 	end
 end
 
+function Velkoz:DetonateQ()
+	if Game.Timer() - qPointsUpdatedAt < .25 and self:IsQActive() and qHitPoints then
+		for i = 1, #qHitPoints do		
+			if qHitPoints[i] then
+				if qHitPoints[i].playerHit and Menu.Skills.Q.Targets[qHitPoints[i].playerHit.charName] and Menu.Skills.Q.Targets[qHitPoints[i].playerHit.charName]:Value()then					
+					Control.CastSpell(HK_Q)
+				end
+			end
+		end
+	end	
+end
 
+function Velkoz:UpdateQInfo()
+
+	if self:IsQActive() then	
+		local directionVector = Vector(qMissile.missileData.endPos.x - qMissile.missileData.startPos.x,qMissile.missileData.endPos.y - qMissile.missileData.startPos.y,qMissile.missileData.endPos.z - qMissile.missileData.startPos.z):Normalized()										
+		local checkInterval = Menu.General.CheckInterval:Value()
+		local pointCount = 600 / checkInterval * 2
+		qHitPoints = {}
+		
+		for i = 1, pointCount, 2 do
+			local result =  self:CalculateNode(qMissile,  qMissile.pos + directionVector:Perpendicular() * i * checkInterval)			
+			qHitPoints[i] = result
+			if result.collision then
+				break
+			end
+		end
+				
+		for i = 2, pointCount, 2 do		
+			local result =  self:CalculateNode(qMissile,  qMissile.pos + directionVector:Perpendicular2() * i * checkInterval)			
+			qHitPoints[i] = result	
+			if result.collision then
+				break
+			end
+		end		
+		qPointsUpdatedAt = Game.Timer()
+		
+	end
+end
 
 function Velkoz:IsQActive()
 	return qMissile and qMissile.name and qMissile.name == "VelkozQMissile"
