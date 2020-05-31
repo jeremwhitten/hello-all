@@ -252,6 +252,8 @@ self.Menu:MenuElement({type = MENU, id = "Combo", name = "Combo Mode"})
 	self.Menu.Combo:MenuElement({id = "UseQ", name = "[Q]", value = true})
 	self.Menu.Combo:MenuElement({id = "UseW", name = "[W]", value = true})
 	self.Menu.Combo:MenuElement({id = "UseE", name = "[E]", value = true})
+	self.Menu.Combo:MenuElement({id = "UseR", name = "[R]", value = true})
+	
 
 self.Menu:MenuElement({type = MENU, id = "KS", name = "KillSteal Mode"})
 	self.Menu.KS:MenuElement({id = "UseR", name = "[R]", value = true})	
@@ -366,19 +368,19 @@ function Q2(pr)
 end
 
 -- Ult KillSteal --
-function Velkoz:KSUlt()
-local target = GetTarget(2200)     	
-if target == nil then return end
-	if IsValid(target) then
-		local Rdmg = getdmg("R", target, myHero) -- Dmg data from DamageLib
-		if myHero.pos:DistanceTo(target.pos) < 1550 and self.Menu.KS.UseR:Value() and Ready(_R) then
-			local pred = GetGamsteronPrediction(target, RData, myHero)
-			if target.health < Rdmg and pred.Hitchance >= self.Menu.Pred.PredR:Value() + 1 then  --- target.health < Rdmg ,,,, check target and dmg
-				Control.CastSpell(HK_R, pred.CastPosition)
-			end
-		end
-	end
-end
+-- function Velkoz:KSUlt()
+-- local target = GetTarget(2200)     	
+-- if target == nil then return end
+	-- if IsValid(target) then
+		-- local Rdmg = getdmg("R", target, myHero) -- Dmg data from DamageLib
+		-- if myHero.pos:DistanceTo(target.pos) < 1550 and self.Menu.KS.UseR:Value() and Ready(_R) then
+			-- local pred = GetGamsteronPrediction(target, RData, myHero)
+			-- if target.health < Rdmg and pred.Hitchance >= self.Menu.Pred.PredR:Value() + 1 then  --- target.health < Rdmg ,,,, check target and dmg
+				-- Control.CastSpell(HK_R, pred.CastPosition)
+			-- end
+		-- end
+	-- end
+-- end
 
 
 function Velkoz:Combo()
@@ -402,7 +404,15 @@ if target == nil then return end
 				Control.CastSpell(HK_E, pred.CastPosition)
 			end
 		end
-	end
+		
+		local Rdmg = getdmg("R", target, myHero)
+			if myHero.pos:DistanceTo(target.pos) <= 2200 and self.Menu.Combo.UseR:Value() and Ready(_R) then
+		local pred = GetGamsteronPrediction(target, RData, myHero)
+				if target.health < Rdmg and pred.Hitchance >= self.Menu.Combo.UseR:Value() + 1 then
+				Control.CastSpell(HK_R, pred.CastPosition)
+			end
+				end
+	
 end
 
 function Velkoz:DetonateQ()
@@ -449,12 +459,14 @@ function Velkoz:IsQActive()
 	return qMissile and qMissile.name and qMissile.name == "VelkozQMissile"
 end
 
-function Velkoz:IsRActive()
-	if myHero.activeSpell and myHero.activeSpell.valid and myHero.activeSpell.name == "VelkozR" then
-		return true
-	else
-		return false
-	end
+-- SERIES I FUCKING LOVE YOU. 
+function Velkoz:IsRActive(target)
+    if myHero.activeSpell and myHero.activeSpell.valid and myHero.activeSpell.name == "VelkozR" then
+        SetMovement(false)
+        Control.SetCursorPos(target.pos)
+    else
+        SetMovement(true)
+    end
 end
 	
 
