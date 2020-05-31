@@ -283,7 +283,7 @@ local Mode = GetMode()
 	if Mode == "Combo" then
 		self:Combo()  	
 	end
-	self:KSUlt()
+	
 end
  
 function Velkoz:Draw()
@@ -407,10 +407,11 @@ if target == nil then return end
 		
 		local Rdmg = getdmg("R", target, myHero)
 			if myHero.pos:DistanceTo(target.pos) <= 2200 and self.Menu.Combo.UseR:Value() and Ready(_R) then
-		local pred = GetGamsteronPrediction(target, RData, myHero)
-				if target.health < Rdmg and pred.Hitchance >= self.Menu.Combo.UseR:Value() + 1 then
+			local pred = GetGamsteronPrediction(target, RData, myHero)
+				if pred.Hitchance >= self.Menu.Pred.PredR:Value() + 1 and target.health < Rdmg then
 				Control.CastSpell(HK_R, pred.CastPosition)
 			end
+				end
 				end
 	
 end
