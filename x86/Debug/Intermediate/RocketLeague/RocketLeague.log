@@ -1,0 +1,124 @@
+﻿  PrintHelper.cpp
+  The contents of <filesystem> are available only with C++17 or later.
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\UE3\PropertyFlags.hpp(6,12): error C2143: syntax error: missing ';' before 'enum [tag]'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(39,22): error C2039: 'path': is not a member of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\UE3\GenericTypes.hpp(62): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(39,26): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(39,26): error C2143: syntax error: missing ',' before '&'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(85,29): error C2039: 'path': is not a member of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\UE3\GenericTypes.hpp(62): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(85,33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(85,33): error C2143: syntax error: missing ',' before '&'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(91,29): error C2039: 'path': is not a member of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\UE3\GenericTypes.hpp(62): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(91,33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(91,33): error C2143: syntax error: missing ',' before '&'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(97,31): error C2039: 'path': is not a member of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\UE3\GenericTypes.hpp(62): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(97,35): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(97,35): error C2143: syntax error: missing ',' before '&'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(103,40): error C2039: 'path': is not a member of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\UE3\GenericTypes.hpp(62): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(103,44): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(103,44): error C2143: syntax error: missing ',' before '&'
+  Main.cpp
+  The contents of <filesystem> are available only with C++17 or later.
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(11,7): error C2143: syntax error: missing ';' before '<class-head>'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(12,1): error C2881: 'fs': is already used as an alias for 'std::experimental::filesystem'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include\fstream(43): message : see declaration of 'std::experimental::filesystem'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(34,24): error C2676: binary '/': 'const std::experimental::filesystem::v1::path' does not define this operator or a conversion to a type acceptable to the predefined operator
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(44,24): error C2676: binary '/': 'const std::experimental::filesystem::v1::path' does not define this operator or a conversion to a type acceptable to the predefined operator
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(62,24): error C2676: binary '/': 'const std::experimental::filesystem::v1::path' does not define this operator or a conversion to a type acceptable to the predefined operator
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(78,27): error C2676: binary '/': 'const std::experimental::filesystem::v1::path' does not define this operator or a conversion to a type acceptable to the predefined operator
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(89,27): error C2676: binary '/': 'const std::experimental::filesystem::v1::path' does not define this operator or a conversion to a type acceptable to the predefined operator
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(105,26): error C2676: binary '/': 'const std::experimental::filesystem::v1::path' does not define this operator or a conversion to a type acceptable to the predefined operator
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(144,28): error C2676: binary '/': 'const std::experimental::filesystem::v1::path' does not define this operator or a conversion to a type acceptable to the predefined operator
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(144,21): error C2789: 'sdkPath': an object of const-qualified type must be initialized
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(144): message : see declaration of 'sdkPath'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(145,6): error C2039: 'create_directories': is not a member of 'std::experimental::filesystem'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include\fstream(43): message : see declaration of 'std::experimental::filesystem'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(145,32): error C3536: 'sdkPath': cannot be used before it is initialized
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(145,24): error C3861: 'create_directories': identifier not found
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(162,6): error C2664: 'bool Package::Save(const std::experimental::filesystem::v1::path &) const': cannot convert argument 1 from 'int' to 'const std::experimental::filesystem::v1::path &'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(162,6): message : Reason: cannot convert from 'int' to 'const std::experimental::filesystem::v1::path'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(162,6): message : use of undefined type 'std::experimental::filesystem::v1::path'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include\fstream(45,19): message : see declaration of 'std::experimental::filesystem::v1::path'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(39,7): message : see declaration of 'Package::Save'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(209,11): error C2079: 'outputDirectory' uses undefined class 'std::experimental::filesystem::v1::path'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(209,59): error C2440: 'initializing': cannot convert from 'std::string' to 'int'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(209,26): message : No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(219,29): error C2027: use of undefined type 'std::experimental::filesystem::v1::path'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include\fstream(45): message : see declaration of 'std::experimental::filesystem::v1::path'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(219,25): error C2064: term does not evaluate to a function taking 1 arguments
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(222,18): error C2677: binary '/=': no global operator found which takes type 'std::string' (or there is no acceptable conversion)
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(223,6): error C2039: 'create_directories': is not a member of 'std::experimental::filesystem'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include\fstream(43): message : see declaration of 'std::experimental::filesystem'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(223,24): error C3861: 'create_directories': identifier not found
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(225,53): error C2297: '/': illegal, right operand has type 'const char [14]'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(230,23): error C2664: 'void Dump(const std::experimental::filesystem::v1::path &)': cannot convert argument 1 from 'int' to 'const std::experimental::filesystem::v1::path &'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(230,23): message : Reason: cannot convert from 'int' to 'const std::experimental::filesystem::v1::path'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(230,23): message : use of undefined type 'std::experimental::filesystem::v1::path'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include\fstream(45,19): message : see declaration of 'std::experimental::filesystem::v1::path'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(31,6): message : see declaration of 'Dump'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(233,6): error C2039: 'create_directories': is not a member of 'std::experimental::filesystem'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include\fstream(43): message : see declaration of 'std::experimental::filesystem'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(233,24): error C3861: 'create_directories': identifier not found
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(237,33): error C2664: 'void ProcessPackages(const std::experimental::filesystem::v1::path &)': cannot convert argument 1 from 'int' to 'const std::experimental::filesystem::v1::path &'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(237,33): message : Reason: cannot convert from 'int' to 'const std::experimental::filesystem::v1::path'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(237,33): message : use of undefined type 'std::experimental::filesystem::v1::path'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include\fstream(45,19): message : see declaration of 'std::experimental::filesystem::v1::path'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Main.cpp(140,6): message : see declaration of 'ProcessPackages'
+  Package.cpp
+  The contents of <filesystem> are available only with C++17 or later.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\ctype.h(15,1): error C2144: syntax error: 'int' should be preceded by ';'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(39,22): error C2039: 'path': is not a member of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\UE3\GenericTypes.hpp(62): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(39,26): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(39,26): error C2143: syntax error: missing ',' before '&'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(85,29): error C2039: 'path': is not a member of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\UE3\GenericTypes.hpp(62): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(85,33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(85,33): error C2143: syntax error: missing ',' before '&'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(91,29): error C2039: 'path': is not a member of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\UE3\GenericTypes.hpp(62): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(91,33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(91,33): error C2143: syntax error: missing ',' before '&'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(97,31): error C2039: 'path': is not a member of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\UE3\GenericTypes.hpp(62): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(97,35): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(97,35): error C2143: syntax error: missing ',' before '&'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(103,40): error C2039: 'path': is not a member of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\UE3\GenericTypes.hpp(62): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(103,44): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(103,44): error C2143: syntax error: missing ',' before '&'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(291,29): error C2039: 'unique_ptr': is not a member of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(274): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(291,39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(291,39): error C2143: syntax error: missing ',' before '<'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(293,22): error C2065: 'lhs': undeclared identifier
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.hpp(293,28): error C2065: 'rhs': undeclared identifier
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(69,30): error C2039: 'path': is not a member of 'std'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include\chrono(24): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(69,34): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(69,34): error C2143: syntax error: missing ',' before '&'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(694,37): error C2039: 'path': is not a member of 'std'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include\chrono(24): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(694,41): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(694,41): error C2143: syntax error: missing ',' before '&'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(698,24): error C2677: binary '/': no global operator found which takes type 'std::string' (or there is no acceptable conversion)
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(727,37): error C2039: 'path': is not a member of 'std'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include\chrono(24): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(727,41): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(727,41): error C2143: syntax error: missing ',' before '&'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(731,24): error C2677: binary '/': no global operator found which takes type 'std::string' (or there is no acceptable conversion)
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(744,39): error C2039: 'path': is not a member of 'std'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include\chrono(24): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(744,43): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(744,43): error C2143: syntax error: missing ',' before '&'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(755,24): error C2677: binary '/': no global operator found which takes type 'std::string' (or there is no acceptable conversion)
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(805,48): error C2039: 'path': is not a member of 'std'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include\chrono(24): message : see declaration of 'std'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(805,52): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(805,52): error C2143: syntax error: missing ',' before '&'
+C:\Users\Jeremy\Downloads\UnrealEngineSDKGenerator-master\UnrealEngineSDKGenerator-master\Engine\Package.cpp(809,24): error C2677: binary '/': no global operator found which takes type 'std::string' (or there is no acceptable conversion)
+  Generating Code...
