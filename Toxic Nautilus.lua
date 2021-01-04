@@ -334,6 +334,7 @@ end
 function Nautilus:Tick()
 if MyHeroNotReady() then return end
 AutoR2()
+AutoW()
 
 
 
@@ -423,13 +424,7 @@ if target == nil then return end
 			if pred.Hitchance >= self.Menu.Pred.PredQ:Value() + 1 then
 				Control.CastSpell(HK_Q, pred.CastPosition)		
 		   end
-		end 
-
-		if myHero.health/myHero.maxHealth <= self.Menu.AutoW.UseWH:Value()/100 and Menu.AutoW.UseW:Value() and Ready(_W) then
-		 
-			Control.CastSpell(HK_W)
-		end
-		 
+		end  
 
 		if myHero.pos:DistanceTo(target.pos) <= 300 and self.Menu.Combo.UseE:Value() and Ready(_E) then
 			Control.CastSpell(HK_E)
@@ -454,6 +449,14 @@ if target == nil then return end
             return
         end
     end
+end
+
+function AutoW()
+	if myHero.health/myHero.maxHealth <= 50/100 and Ready(_W) then
+	--print("Healing")
+			Control.CastSpell(HK_W)
+	end
+
 end
 
 	
