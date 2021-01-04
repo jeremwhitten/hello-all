@@ -386,8 +386,7 @@ function Nautilus:Draw()
 			local screenPos = target.pos:To2D()
                 Draw.Text("Killable", 28, screenPos.x - 30, screenPos.y, Draw.Color(255, 255, 0, 0))
             end
-			else
-				Draw.Text("Harass", 28, screenPos.x - 30, screenPos.y, Draw.Color(255, 255, 0, 0))
+			
 			
         end
 end
