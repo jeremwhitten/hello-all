@@ -6,6 +6,8 @@ if not table.contains(Heroes, myHero.charName) then return end
 
 
 require('DamageLib')
+require "2DGeometry"
+require 'MapPositionGOS'
 
 if not FileExist(COMMON_PATH .. "GamsteronPrediction.lua") then
 	print("GsoPred. installed Press 2x F6")
@@ -83,6 +85,8 @@ local function IsRecalling(unit)
     end
     return false
 end
+
+
 
 
 
@@ -338,6 +342,8 @@ AutoW()
 
 
 
+
+
 local Mode = GetMode()
 	if Mode == "Combo" then
 		self:Combo()  	
@@ -419,12 +425,14 @@ local target = GetTarget(1100)
 if target == nil then return end
 	if IsValid(target) then
 		
-		if myHero.pos:DistanceTo(target.pos) <= 1100 and self.Menu.Combo.UseQ:Value() and Ready(_Q) then
+		if myHero.pos:DistanceTo(target.pos) <= 1100 and Ready(_Q) then
 		    local pred = GetGamsteronPrediction(target, QData, myHero)
 			if pred.Hitchance >= self.Menu.Pred.PredQ:Value() + 1 then
-				Control.CastSpell(HK_Q, pred.CastPosition)		
-		   end
-		end  
+		CastQ(target)
+		end
+		end
+
+		
 
 		if myHero.pos:DistanceTo(target.pos) <= 300 and self.Menu.Combo.UseE:Value() and Ready(_E) then
 			Control.CastSpell(HK_E)
@@ -440,6 +448,7 @@ if target == nil then return end
 	end	
 end
 
+
 function AutoR2()
 local target = GetTarget(550)
 if target == nil then return end
@@ -451,6 +460,20 @@ if target == nil then return end
     end
 end
 
+function CreateQPoly(position)
+    local startPos = myHero.pos
+    local endPos = position
+    local width = 10
+    local c1 = startPos+Vector(Vector(endPos)-startPos):Perpendicular():Normalized()*width
+    local c2 = startPos+Vector(Vector(endPos)-startPos):Perpendicular2():Normalized()*width
+    local c3 = endPos+Vector(Vector(startPos)-endPos):Perpendicular():Normalized()*width
+    local c4 = endPos+Vector(Vector(startPos)-endPos):Perpendicular2():Normalized()*width
+  
+    local poly = Polygon(c1,c2,c3,c4)
+
+    return poly
+end
+
 function AutoW()
 	if myHero.health/myHero.maxHealth <= 50/100 and Ready(_W) then
 	--print("Healing")
@@ -458,6 +481,23 @@ function AutoW()
 	end
 
 end
+
+function CastQ(target)
+local target = GetTarget(1100)
+
+	local pred = GetGamsteronPrediction(target, QData, myHero)		
+            lineQ = CreateQPoly(pred.CastPosition)
+            for i, lineSegment in ipairs(lineQ:__getLineSegments()) do
+                if MapPosition:intersectsWall(lineSegment) then
+                    return
+                end
+            end
+            Control.CastSpell(HK_Q, pred.CastPosition)
+            --print("cast Q")     
+end
+
+    
+
 
 	
 
