@@ -328,7 +328,7 @@ Type = _G.SPELLTYPE_CIRCLE, Delay = 0.25, Range = 650, Speed = math.huge, Collis
 function Swain:LoadMenu()                     
 	
 --MainMenu
-self.Menu = MenuElement({type = MENU, id = "Swain", name = "Swain Beta.01", leftIcon = "http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Swain.png"})
+self.Menu = MenuElement({type = MENU, id = "Swain", name = "Swain Beta.01"})
 		
 --ComboMenu  
 self.Menu:MenuElement({type = MENU, id = "Combo", name = "Combo Mode"})
