@@ -7,7 +7,7 @@ if not table.contains(Heroes, myHero.charName) then return end
 
 require('DamageLib')
 require "2DGeometry"
-require 'MapPositionGOS'
+
 
 if not FileExist(COMMON_PATH .. "GamsteronPrediction.lua") then
 	print("GsoPred. installed Press 2x F6")
@@ -16,7 +16,7 @@ if not FileExist(COMMON_PATH .. "GamsteronPrediction.lua") then
 end
     
 require('GamsteronPrediction')
-require "Collision"
+
 
 
 
