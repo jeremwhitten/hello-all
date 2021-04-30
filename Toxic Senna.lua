@@ -13,7 +13,7 @@ if not FileExist(COMMON_PATH .. "GamsteronPrediction.lua") then
 	while not FileExist(COMMON_PATH .. "GamsteronPrediction.lua") do end
 end
     
-require('GamsteronPrediction')
+require('GGPrediction')
 require "Collision"
 require "2DGeometry"
 
@@ -287,6 +287,7 @@ local function UndyingBuffs(unit)
 end
 
 
+
 class "Senna"
 
 function Senna:__init()	
@@ -306,25 +307,9 @@ function Senna:__init()
 end
 
 
-local QData =
-{
-Type = _G.SPELLTYPE_LINE, Delay = 0.25, Radius = 180, Range = 600, Speed = 2000, Collision = false;
-}
-
-local WData =
-{
-Type = _G.SPELLTYPE_LINE, Delay = 0.25, Radius = 280, Range = 1300, Speed = math.huge, Collision = {_G.COLLISION_MINION}
-}
-
-local EData =
-{
-Type = _G.SPELLTYPE_CIRCLE, Delay = 0.25, Radius = 355, Range = 300, Speed = 850, Collision = false
-}
-
-local RData =
-{
-Type = _G.SPELLTYPE_LINE, Delay = 0.46, Range = 825, Speed = 20000, Collision = false
-}
+	local QPrediction = GGPrediction:SpellPrediction({Type = GGPrediction.SPELLTYPE_LINE, Delay = 0.4, Radius = 50, Range = 1300, Speed = math.huge, Collision = nil, MaxCollision = 0, CollisionTypes = false})
+   -- local WPrediction = GGPrediction:SpellPrediction({Type = GGPrediction.SPELLTYPE_LINE, Delay = 0.25, Radius = 60, Range = 1100, Speed = 1000, Collision = true, CollisionTypes = true})
+    --local RPrediction = GGPrediction:SpellPrediction({Type = GGPrediction.SPELLTYPE_LINE, Delay = 1, Radius = 80, Range = math.huge, Speed = 20000})
 
 function Senna:LoadMenu()                     
 	
@@ -362,7 +347,7 @@ self.Menu:MenuElement({type = MENU, id = "Pred", name = "Prediction"})
 	self.Menu.Drawing:MenuElement({id = "DrawR", name = "Draw [R] Range", value = true})
 	self.Menu.Drawing:MenuElement({id = "Killable", name = "DrawTargetKill", value = true})
 
-	
+Slot = {[_Q] = "Q", [_W] = "W", [_E] = "E", [_R] = "R"}	
 
 end
 
@@ -408,9 +393,8 @@ function Senna:Draw()
         if self.Menu.Drawing.Killable:Value() and IsValid(target) then
         local QDmg = getdmg("Q", target, myHero)
         local WDmg = getdmg("W", target, myHero)
-        local EDmg = getdmg("E", target, myHero)
         local RDmg = getdmg("R", target, myHero)
-        local Dmg = QDmg + WDmg + EDmg + RDmg
+        local Dmg = QDmg + WDmg + RDmg
 		--print(Dmg)
         local hp = (target.health)
             if Ready(_R)and Dmg > hp then
@@ -446,15 +430,14 @@ end
 if target == nil then return end
 	 if IsValid(target) then
 		 local Rdmg = getdmg("R", target, myHero) -- Dmg data from DamageLib
-		 if myHero.pos:DistanceTo(target.pos) <= 20000 and Ready(_R) then
-			 local pred = GetGamsteronPrediction(target, RData, myHero)
+		 if myHero.pos:DistanceTo(target.pos) <= 100000 and Ready(_R) then
 			 if target.health < Rdmg then
 			 if target.pos2D.onScreen then 		
-							Control.CastSpell(HK_R, target) 							
+							CastGGPred(HK_R, target) 							
 						else	   
 							CastSpellMM(HK_R, target.pos, 5500)
 						end
-				 Control.CastSpell(HK_R, target)
+				 CastGGPred(HK_R, target)
 			 end
 		 end
 	 end
@@ -466,36 +449,48 @@ local target = GetTarget(1100)
 if target == nil then return end
 	if IsValid(target) then
 		
-		if myHero.pos:DistanceTo(target.pos) <= 1100 and self.Menu.Combo.UseQ:Value() and Ready(_Q) then
-		    local pred = GetGamsteronPrediction(target, QData, myHero)
-			if pred.Hitchance >= self.Menu.Pred.PredQ:Value() + 1 then
-				Control.CastSpell(HK_Q, pred.CastPosition)		
-		   end
-		end 
+		
 
 		if myHero.pos:DistanceTo(target.pos) <= 1300 and self.Menu.Combo.UseW:Value() and Ready(_W) then
-		    local pred = GetGamsteronPrediction(target, WData, myHero)
-			if pred.Hitchance >= self.Menu.Pred.PredW:Value() + 1 then
-				Control.CastSpell(HK_W, pred.CastPosition)		
-		   end
+				CastGGPred(HK_W, target)	
+		end
+		 
+
+		if myHero.pos:DistanceTo(target.pos) <= 1100 and self.Menu.Combo.UseQ:Value() and Ready(_Q) then
+				Control.CastSpell(HK_Q, target)		
 		end 
 		
 		
-			local Rdmg = getdmg("R", target, myHero)
-			if myHero.pos:DistanceTo(target.pos) <= 6000 and self.Menu.Combo.UseR:Value() and Ready(_R) then
-			local pred = GetGamsteronPrediction(target, RData, myHero)
-			if pred.Hitchance >= self.Menu.Pred.PredR:Value() + 1 then
-					if target.health < Rdmg then
-					Control.CastSpell(HK_R, pred.CastPosition)		
-					end
-			end	
-			end
+			--local Rdmg = getdmg("R", target, myHero)
+			--if myHero.pos:DistanceTo(target.pos) <= 6000 and self.Menu.Combo.UseR:Value() and Ready(_R) then
+					--if target.health < Rdmg then
+					--CastGGPred(HK_R, target)		
+					--end
+			--end	
+			
 	end	
 end
 
 
 
-
+function CastGGPred(spell, unit)
+	if Ready(_W) then
+		local WPrediction = GGPrediction:SpellPrediction({Type = GGPrediction.SPELLTYPE_LINE, Delay = 0.25, Radius = 60, Range = 1100, Speed = 1000, Collision = true, CollisionTypes = COLLISION_MINION})
+		WPrediction:GetPrediction(unit, myHero)
+		if WPrediction:CanHit(1) then
+			Control.CastSpell(HK_W, WPrediction.CastPosition)
+		end	
+	
+	else
+		if Ready(_R) then
+			local RPrediction = GGPrediction:SpellPrediction({Type = GGPrediction.SPELLTYPE_LINE, Delay = 0.5, Radius = 80, Range = 100000, Speed = 20000, Collision = false})
+			RPrediction:GetPrediction(unit, myHero)
+			if RPrediction:CanHit(1) then
+				Control.CastSpell(HK_R, RPrediction.CastPosition)
+			end	
+		end	
+	end
+end
 	
 
 
