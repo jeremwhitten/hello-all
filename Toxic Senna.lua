@@ -2,9 +2,6 @@ local Heroes = {"Senna"}
 
 if not table.contains(Heroes, myHero.charName) then return end
 
-
-
-
 require('DamageLib')
 
 if not FileExist(COMMON_PATH .. "GamsteronPrediction.lua") then
@@ -16,13 +13,6 @@ end
 require('GGPrediction')
 require "Collision"
 require "2DGeometry"
-
-
-
-
-
-
-
 
 local GameHeroCount = Game.HeroCount
 local TEAM_ALLY = myHero.team
@@ -54,10 +44,6 @@ function LoadUnits()
 	end
 end
 
-local function EnemyHeroes()
-	return Enemies
-end
-
 local function Ready(spell)
     return myHero:GetSpellData(spell).currentCd == 0 and myHero:GetSpellData(spell).level > 0 and myHero:GetSpellData(spell).mana <= myHero.mana and Game.CanUseSpell(spell) == 0
 end
@@ -78,8 +64,6 @@ local function IsRecalling(unit)
     end
     return false
 end
-
-
 
 local function MyHeroNotReady()
     return myHero.dead or Game.IsChatOpen() or (_G.JustEvade and _G.JustEvade:Evading()) or (_G.ExtLibEvade and _G.ExtLibEvade.Evading) or IsRecalling(myHero)
@@ -140,19 +124,6 @@ local function GetDistanceSqr(p1, p2)
 	return dx*dx + dz*dz
 end
 
-local function CountEnemiesNear(pos, range)
-    local pos = pos.pos
-	local count = 0
-	for i = 1, GameHeroCount() do 
-	local hero = GameHero(i)
-	local Range = range * range
-		if hero.team ~= TEAM_ALLY and GetDistanceSqr(pos, hero.pos) < Range and IsValid(hero) then
-		count = count + 1
-		end
-	end
-	return count
-end
-
 local function GetAllyHeroes()
 	local _AllyHeroes = {}
 	for i = 1, GameHeroCount() do
@@ -164,34 +135,9 @@ local function GetAllyHeroes()
 	return _AllyHeroes
 end
 
-local function GetAllyCount(pos, range)
-    local pos = pos.pos
-    local count = 0
-    for i, hero in ipairs(AllyHeroes()) do
-    local Range = range * range
-        if GetDistanceSqr(pos, hero.pos) < Range and IsValid(hero) then
-        count = count + 1
-        end
-    end
-    return count
-end
-
 local function GetDistance(p1, p2)
 	p2 = p2 or myHero
 	return math.sqrt(GetDistanceSqr(p1, p2))
-end
-
-local function GetMinionCount(range, pos)
-    local pos = pos.pos
-	local count = 0
-	for i = 1,Game.MinionCount() do
-	local hero = Game.Minion(i)
-	local Range = range * range
-		if hero.team ~= TEAM_ALLY and hero.dead == false and GetDistanceSqr(pos, hero.pos) < Range then
-		count = count + 1
-		end
-	end
-	return count
 end
 	
 local function HasBuff(unit, buffname)
@@ -286,8 +232,6 @@ local function UndyingBuffs(unit)
     return false
 end
 
-
-
 class "Senna"
 
 function Senna:__init()	
@@ -310,45 +254,31 @@ end
 	local QPrediction = GGPrediction:SpellPrediction({Type = GGPrediction.SPELLTYPE_LINE, Delay = 0.4, Radius = 50, Range = 1300, Speed = math.huge, Collision = nil, MaxCollision = 0, CollisionTypes = false})
    -- local WPrediction = GGPrediction:SpellPrediction({Type = GGPrediction.SPELLTYPE_LINE, Delay = 0.25, Radius = 60, Range = 1100, Speed = 1000, Collision = true, CollisionTypes = true})
     --local RPrediction = GGPrediction:SpellPrediction({Type = GGPrediction.SPELLTYPE_LINE, Delay = 1, Radius = 80, Range = math.huge, Speed = 20000})
-
-function Senna:LoadMenu()                     
-	
+function Senna:LoadMenu()                     	
 --MainMenu
-self.Menu = MenuElement({type = MENU, id = "Senna", name = "Senna Beta.01", leftIcon = HeroIcon})
-		
+self.Menu = MenuElement({type = MENU, id = "Senna", name = "Senna Beta.01", leftIcon = HeroIcon})		
 --ComboMenu  
 self.Menu:MenuElement({type = MENU, id = "Combo", name = "Combo Mode"})
 	self.Menu.Combo:MenuElement({id = "UseQ", name = "[Q]",value = true})
 	self.Menu.Combo:MenuElement({id = "UseW", name = "[W]",value = true})
 	self.Menu.Combo:MenuElement({id = "UseR", name = "[R]",value = true})
 
-	
-	
-
-
 self.Menu:MenuElement({type = MENU, id = "KS", name = "KillSteal Mode"})
 	self.Menu.KS:MenuElement({id = "UseR", name = "[R]", value = true})	
-
 --LaneClear
 self.Menu:MenuElement({type = MENU, id = "LaneClear", name = "LaneClear Mode"})
-	self.Menu.LaneClear:MenuElement({id = "UseQ", name = "[Q]", leftIcon = QIcon, value = true})
-
-		
+	self.Menu.LaneClear:MenuElement({id = "UseQ", name = "[Q]", leftIcon = QIcon, value = true})		
 --Prediction
 self.Menu:MenuElement({type = MENU, id = "Pred", name = "Prediction"})
 	self.Menu.Pred:MenuElement({id = "PredQ", name = "Hitchance[Q]", value = 1, drop = {"Normal", "High", "Immobile"}})
 	self.Menu.Pred:MenuElement({id = "PredW", name = "Hitchance[W]", value = 1, drop = {"Normal", "High", "Immobile"}})
-	self.Menu.Pred:MenuElement({id = "PredR", name = "Hitchance[R]", value = 1, drop = {"Normal", "High", "Immobile"}})	
-	
+	self.Menu.Pred:MenuElement({id = "PredR", name = "Hitchance[R]", value = 1, drop = {"Normal", "High", "Immobile"}})		
 --Drawing 
 	self.Menu:MenuElement({type = MENU, id = "Drawing", name = "Drawings Mode"})
 	self.Menu.Drawing:MenuElement({id = "DrawQ", name = "Draw [Q] Range", value = true})
 	self.Menu.Drawing:MenuElement({id = "DrawW", name = "Draw [W] Range", value = true})
 	self.Menu.Drawing:MenuElement({id = "DrawR", name = "Draw [R] Range", value = true})
 	self.Menu.Drawing:MenuElement({id = "Killable", name = "DrawTargetKill", value = true})
-
-Slot = {[_Q] = "Q", [_W] = "W", [_E] = "E", [_R] = "R"}	
-
 end
 
 function Senna:Tick()
@@ -356,15 +286,10 @@ if MyHeroNotReady() then return end
 KSUlt()
 AutoHeal()
 
-
-
 local Mode = GetMode()
 	if Mode == "Combo" then
 		self:Combo()  	
-	end
-	
-	
-	
+	end	
 end
  
 function Senna:Draw()
@@ -379,9 +304,6 @@ function Senna:Draw()
     Draw.Circle(myHero, 800, 1, Draw.Color(225, 0, 255, 10))
 	end
 
-
-
-
 	local textPos = myHero.dir	
 	if not FileExist(COMMON_PATH .. "GamsteronPrediction.lua") then
 		Draw.Text("GsoPred. installed Press 2x F6", 50, textPos.x + 100, textPos.y - 250, Draw.Color(255, 255, 0, 0))
@@ -391,25 +313,20 @@ function Senna:Draw()
 	if target == nil then return end 
 	
         if self.Menu.Drawing.Killable:Value() and IsValid(target) then
-        local QDmg = getdmg("Q", target, myHero)
-        local WDmg = getdmg("W", target, myHero)
-        local RDmg = getdmg("R", target, myHero)
-        local Dmg = QDmg + WDmg + RDmg
+			local QDmg = getdmg("Q", target, myHero)
+			local WDmg = getdmg("W", target, myHero)
+			local RDmg = getdmg("R", target, myHero)
+			local Dmg = QDmg + WDmg + RDmg
 		--print(Dmg)
-        local hp = (target.health)
+			local hp = (target.health)
             if Ready(_R)and Dmg > hp then
 			local screenPos = target.pos:To2D()
                 Draw.Text("Killable", 28, screenPos.x - 30, screenPos.y, Draw.Color(255, 255, 0, 0))
             end
 			else
 				Draw.Text("Harass", 28, screenPos.x - 30, screenPos.y, Draw.Color(255, 255, 0, 0))
-			
-        end
+		 end
 end
-
-
-
-
 
 function AutoHeal()
     if Ready(_Q) then
@@ -435,7 +352,7 @@ if target == nil then return end
 			 if target.pos2D.onScreen then 		
 							CastGGPred(HK_R, target) 							
 						else	   
-							CastSpellMM(HK_R, target.pos, 5500)
+							CastSpellMM(HK_R, target.pos, 20000, 1)
 						end
 				 CastGGPred(HK_R, target)
 			 end
@@ -443,35 +360,19 @@ if target == nil then return end
 	 end
  end
 
-
 function Senna:Combo()
 local target = GetTarget(1300)     	
 if target == nil then return end
 	if IsValid(target) then
-		
-		
-
 		if myHero.pos:DistanceTo(target.pos) <= 1300 and self.Menu.Combo.UseW:Value() and Ready(_W) then
 				CastGGPred(HK_W, target)	
 		end
 		 
-
 		if myHero.pos:DistanceTo(target.pos) <= 1100 and self.Menu.Combo.UseQ:Value() and Ready(_Q) then
 				Control.CastSpell(HK_Q, target)		
 		end 
-		
-		
-			--local Rdmg = getdmg("R", target, myHero)
-			--if myHero.pos:DistanceTo(target.pos) <= 6000 and self.Menu.Combo.UseR:Value() and Ready(_R) then
-					--if target.health < Rdmg then
-					--CastGGPred(HK_R, target)		
-					--end
-			--end	
-			
 	end	
 end
-
-
 
 function CastGGPred(spell, unit)
 	if Ready(_W) then
@@ -491,9 +392,6 @@ function CastGGPred(spell, unit)
 		end	
 	end
 end
-	
-
-
 
 function OnLoad()
 	if table.contains(Heroes, myHero.charName) then
