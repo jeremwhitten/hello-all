@@ -445,7 +445,7 @@ if target == nil then return end
 
 
 function Senna:Combo()
-local target = GetTarget(1100)     	
+local target = GetTarget(1300)     	
 if target == nil then return end
 	if IsValid(target) then
 		
